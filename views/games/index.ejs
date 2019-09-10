@@ -1,0 +1,30 @@
+<% include ../partials/header %> 
+
+ <div class="container">
+     <header class="jumbotron" style="margin: 0">
+         <div class="container">
+             <h1 style="text-align: center">Welcome To GameCon!</h1>
+             <p style="text-align: center">View our hand-picked top games from all over the world</p>
+             <p>
+                <div class="text-center">
+                        <a class="btn btn-secondary btn-large text-center"  href="/gamecon/new">Add New Game</a>
+                </div>
+             </p>
+         </div>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% games.forEach(function(game){ %>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem; padding: 0; margin-bottom:10px">
+                    <img src="<%= game.image %>" class="card-img-top" style="width: 100%; height: 200px">
+                    <div class="card-body" style="padding: 0; background-color: #6c757d">
+                        <a href="/gamecon/<%=game._id%>"><h5 class="card-title" style="margin: 0; color:white"><%= game.name %></h5></a> 
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>
