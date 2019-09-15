@@ -49,6 +49,6 @@ app.use("/gamecon", gameRoutes);
 app.use("/gamecon/:id/comments", commentRoutes);
 
 
-app.listen(3000, function(){
+app.listen(process.env.PORT,process.env.IP, function(){
    console.log("The GameCon Server Has Started!");
 });
