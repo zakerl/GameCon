@@ -2,6 +2,7 @@ var express = require("express");
 var router  = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
+var Game = require("../models/game")
 
 //root route
 router.get("/", function(req, res){
@@ -53,6 +54,20 @@ router.get("/logout", function(req, res){
    res.redirect("/gamecon");
 });
 
-
-
+router.get("/gamecon/results",function(req, res){
+  if(req.query.results){
+    const regex = new RegExp(escapeRegex(req.query.results), 'gi');
+    Game.find({name: regex}, function(err, foundBlogs){
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.render("./games/index", {games:foundBlogs})
+        }
+    })
+  }
+})
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 module.exports = router;
